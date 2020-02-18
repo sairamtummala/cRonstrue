@@ -42,6 +42,8 @@ export class CronParser {
       //5 part cron so shift array past seconds element
       parsed.unshift("");
       parsed.push("");
+    } else if (parsed.length > 5) {
+      throw new Error(`Expression has ${parsed.length} parts; too many!`);
     } else if (parsed.length == 6) {
       //If last element ends with 4 digits, a year element has been supplied and no seconds element
       if (/\d{4}$/.test(parsed[5])) {
